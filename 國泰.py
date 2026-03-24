@@ -15,18 +15,22 @@ st_list = pd.read_csv("D:\\Python_code\\工作內容\\2026\\0320_參與券商確
 
 
 #%%
-st_list = ["E66", "E82", "E83", "E84", "E87", "E88", "E93", "E94", "EA8", "EDY", "EA9", "EAA", "EAD", "EAE", "EAJ", "EAK", "EAL", "EAW", "EAU", "EAV"]
-
+st_list = ["E66", "E82", "E83", "E84", "E87", "E88", "E93", "E94", "EA8", "EDY", "EA9", "EAA", "EAD", "EAE", "EAJ", "EAK", "EAL", "EAW", "EAU", "EAV", "EBE", "EBH", "EBJ", "EBK", "EBI", "EBQ", "EBO", "EC2", "ECB", "ECC", "ECN", "ECR", "ECW", "ED6", "EDD", "EDF", "EDO", "EDT", "EE9"]
+#eav
 
 df_output = pd.DataFrame()
 
-for i in range(0, len(st_list)):
+for i in st_list:
     
-    url = "https://www.cathaysite.com.tw/ETF/detail/E83"
-    url = "https://www.cathaysite.com.tw/ETF/detail/E66"
+    url = "https://www.cathaysite.com.tw/ETF/detail/" + i
     
     driver.get(url)
-    time.sleep(2)
+    time.sleep(5)
+    
+    #下滾
+    for k in range(1):
+        driver.execute_script("window.scrollBy(0, 1000);")
+        time.sleep(2) # 暫停等待內容加載
     
     participate_company_click = driver.find_element(By.XPATH, '//*[@id="basic_info"]/app-basic-info/div/div/div[3]/div/div[4]')
     participate_company_click.click()
